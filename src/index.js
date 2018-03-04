@@ -2,8 +2,17 @@
 const createEnumerableProperty = (propertyName) => {
     return ''+propertyName;
 };
-const createNotEnumerableProperty = (propertyName) => {
 
+const createNotEnumerableProperty = (propertyName) => {
+    // but how, if in obj[key] -- key always is a string!!
+    let prop = {a: 'a1a1a1a1'};
+    prop.toString = function() {
+        console.log('this=');
+        console.log(this);
+        console.log(`this.a = ${this.a}`);
+        return propertyName;
+    };
+    return prop;
 };
 const createProtoMagicObject = () => {
     // typeOf magicObj !== 'object' && magicObj.__proto__ === magicObj.prototype
@@ -39,11 +48,17 @@ const createIncrementer = () => {
 };
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
+const returnBackInSecond = () => {
+    //promise 1s / result / 2s
+    // all(1s, result)
+};
 const getDeepPropertiesCount = () => {};
 const createSerializedObject = () => {};
 const toBuffer = () => {};
-const sortByProto = () => {};
+const sortByProto = (arr) => {
+    //bad
+    return arr.sort((a, b) => a.__proto__ - b.__proto__);
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
