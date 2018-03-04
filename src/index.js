@@ -6,7 +6,10 @@ const createNotEnumerableProperty = (propertyName) => {
 
 };
 const createProtoMagicObject = () => {
-
+    // typeOf magicObj !== 'object' && magicObj.__proto__ === magicObj.prototype
+    function F() {};
+    F.prototype = Function.prototype;
+    return F;
 };
 
 const incrementor = (() => {
@@ -19,8 +22,21 @@ const incrementor = (() => {
     return inc;
 })();
 
-const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+// ?? promise...
+const asyncIncrementor = (() => {
+    let value = 0;
+    function asuncInc() {
+        value += 1;
+        return asuncInc;
+    }
+    asuncInc.valueOf = () => value;
+    return asuncInc;
+})();
+
+// generator
+const createIncrementer = () => {
+
+};
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = () => {};
