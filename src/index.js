@@ -56,8 +56,7 @@ const getDeepPropertiesCount = () => {};
 const createSerializedObject = () => {};
 const toBuffer = () => {};
 const sortByProto = (arr) => {
-    //bad
-    return arr.sort((a, b) => a.__proto__ - b.__proto__);
+    return arr.sort((a, b) => Object.getPrototypeOf(a) - Object.getPrototypeOf(b));
 };
 
 exports.createEnumerableProperty = createEnumerableProperty;
