@@ -4,15 +4,7 @@ const createEnumerableProperty = (propertyName) => {
 };
 
 const createNotEnumerableProperty = (propertyName) => {
-    // but how, if in obj[key] -- key always is a string!!
-    let prop = {a: 'a1a1a1a1'};
-    prop.toString = function() {
-        console.log('this=');
-        console.log(this);
-        console.log(`this.a = ${this.a}`);
-        return propertyName;
-    };
-    return prop;
+    return Symbol.for(propertyName);
 };
 const createProtoMagicObject = () => {
     // typeOf magicObj !== 'object' && magicObj.__proto__ === magicObj.prototype
