@@ -31,7 +31,11 @@ const asyncIncrementor = (() => {
 
 // generator
 const createIncrementer = () => {
-
+    let value = 0;
+    return (function* gen() {
+        yield ++value;
+        yield *gen();
+    }())
 };
 
 // return same argument not earlier than in one second, and not later, than in two
