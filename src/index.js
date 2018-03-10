@@ -26,12 +26,7 @@ const incrementor = (() => {
 // ?? promise...
 const asyncIncrementor = (() => {
     let value = 0;
-    function asuncInc() {
-        value += 1;
-        return asuncInc;
-    }
-    asuncInc.valueOf = () => value;
-    return asuncInc;
+    return () => Promise.resolve(++value);
 })();
 
 // generator
