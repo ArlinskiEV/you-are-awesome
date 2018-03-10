@@ -39,9 +39,17 @@ const createIncrementer = () => {
 };
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {
+const returnBackInSecond = (param) => {
     //promise 1s / result / 2s
     // all(1s, result)
+    let intervalId;
+    let prom = new Promise((res,rej) => {
+        intervalId = setInterval(res,1000);
+    });
+    return prom.then(() => {
+        clearInterval(intervalId);
+        return param;
+    });
 };
 const getDeepPropertiesCount = () => {};
 const createSerializedObject = () => {};
